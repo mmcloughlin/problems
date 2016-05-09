@@ -1,6 +1,6 @@
 CC=clang
 
-all: lookup.test
+all: lookup.test bitmasks.test
 
 %.test: test.c %.c
 	$(CC) $^ -o $@
