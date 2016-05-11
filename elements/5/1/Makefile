@@ -9,3 +9,8 @@ lookup.c: byte_parity.h
 
 %.h: %.py
 	python $< > $@
+
+clean:
+	$(RM) *.test byte_parity.h
+
+.PHONY: all clean
