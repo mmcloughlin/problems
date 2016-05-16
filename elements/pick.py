@@ -8,7 +8,7 @@ QUESTIONS_DIR = './questions'
 def read_questions_file(name):
     questions_file = os.path.join(QUESTIONS_DIR, name)
     with open(questions_file) as f:
-        return [q.strip() for q in f]
+        return filter(None, [q.strip() for q in f])
 
 
 # arguments
