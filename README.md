@@ -1,2 +1,2 @@
 # interviews
-Interview programming questions
+Interview-style programming questions.
