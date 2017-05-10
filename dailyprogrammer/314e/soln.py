@@ -2,32 +2,7 @@ import sys
 
 
 def cat_cmp(x, y):
-    if x == y:
-        return 0
-    for a, b in zip(x, y):
-        r = cmp(a, b)
-        if r != 0:
-            return r
-    m = len(x)
-    n = len(y)
-    if m < n:
-        return cat_cmp(x, y[m:])
-    else:
-        return cat_cmp(x[n:], y)
-
-
-def test_cat_cmp():
-    cases = [
-            ('1', '2', -1),
-            ('5', '56', -1),
-            ('5', '50', 1),
-            ('5', '55', 0),
-            ('34563456', '345634564', -1),
-            ('34563456', '34563456344', 1),
-            ]
-    for x, y, expect in cases:
-        assert cat_cmp(x, y) == expect
-        assert cat_cmp(y, x) == -expect
+    return int(x + y) - int(y + x)
 
 
 def cat_range(numbers):
@@ -37,7 +12,7 @@ def cat_range(numbers):
     return mn, mx
 
 
-def test_cat_range():
+def test():
     cases = [
             ('5 56 50', '50556 56550'),
             ('79 82 34 83 69', '3469798283 8382796934'),
@@ -51,14 +26,7 @@ def test_cat_range():
         assert mx == expect_mx
 
 
-def test():
-    test_cat_cmp()
-    test_cat_range()
-
-
 def main():
-    test()
-
     numbers = sys.argv[1:]
     mn, mx = cat_range(numbers)
     print mn, mx
