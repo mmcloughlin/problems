@@ -9,19 +9,19 @@ mkdir -p $dir
 touch $dir/README.md
 cat > $dir/soln.py <<EOF
 def f():
-  pass
+    pass
 
 
 def test(trials=1000):
-  for trial in xrange(trials):
-    f()
-  print 'pass'
+    for trial in xrange(trials):
+        f()
+    print 'pass'
 
 
 def main():
-  test()
+    test()
 
 
 if __name__ == '__main__':
-  main()
+    main()
 EOF
