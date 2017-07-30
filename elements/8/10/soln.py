@@ -45,20 +45,6 @@ def display(n):
     print ' -> '.join(map(str, to_list(n)))
 
 
-def merge(l0, l1):
-    """
-    merge merges two sorted linked lists.
-    """
-    if l0 is None:
-        return l1
-    if l1 is None:
-        return l2
-    if l0.x > l1.x:
-        l0, l1 = l1, l0
-    l0.next = merge(l0.next, l1)
-    return l0
-
-
 def test():
     n = from_list([1,1,1,2,2,2,3,3,4,5,5,6,7,7])
     display(n)
