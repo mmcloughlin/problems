@@ -19,18 +19,16 @@ def bsearch(A, pred):
     return l+1
 
 
-def first_occurrence(A, k):
-    i = bsearch(A, lambda a: a >= k)
-    if i >= len(A) or A[i] != k:
-        return None
-    return i
+def first_entry_larger(A, k):
+    return bsearch(A, lambda a: a > k)
 
 
 def test():
     A = [-14, -10, 2, 108, 108, 243, 285, 285, 285, 401]
-    assert first_occurrence(A, 108) == 3
-    assert first_occurrence(A, 285) == 6
-    assert first_occurrence(A, 150) is None
+    assert first_entry_larger(A, 100) == 3
+    assert first_entry_larger(A, -20) == 0
+    assert first_entry_larger(A, 285) == 9
+    assert first_entry_larger(A, 500) == 10
     print 'pass'
 
 
