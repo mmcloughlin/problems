@@ -1,0 +1,60 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+
+import requests
+
+
+def question_data(title_slug):
+    """
+    Fetch question data from leetcode GraphQL API.
+    """
+    url = 'https://leetcode.com/graphql'
+    payload = {
+            "operationName":"questionData",
+            "variables": {
+                "titleSlug": title_slug,
+            },
+            "query": """query questionData($titleSlug: String!) {
+                question(titleSlug: $titleSlug) {
+                    questionId
+                    title
+                    titleSlug
+                    content
+                }
+            }""",
+        }
+    r = requests.post(url, json=payload)
+    r.raise_for_status()
+    return r.json()
+
+
+def init_question(title_slug):
+    """
+    Create question directory with a README.
+    """
+    path = title_slug
+
+    # Ensure the question directory exists.
+    os.makedirs(path, exist_ok=True)
+
+    # Fetch question data.
+    response = question_data(title_slug)
+    question = response['data']['question']
+
+    # Write README.
+    readme_path = os.path.join(path, 'README.md')
+    content = '# {title}\n\n{content}'.format(**question)
+    with open(readme_path, 'w') as f:
+        f.write(content)
+
+
+def main():
+    title_slugs = sys.argv[1:]
+    for title_slug in title_slugs:
+        init_question(title_slug)
+
+
+if __name__ == '__main__':
+    main()
