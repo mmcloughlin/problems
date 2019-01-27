@@ -1,4 +1,5 @@
 # [String to Integer (atoi)](https://leetcode.com/problems/string-to-integer-atoi/)
+<img src="https://img.shields.io/badge/difficulty-medium-orange.svg" alt="Medium" />
 
 <p>Implement <code><span>atoi</span></code> which&nbsp;converts a string to an integer.</p>
 
@@ -56,3 +57,4 @@
 <strong>Output:</strong> -2147483648
 <strong>Explanation:</strong> The number &quot;-91283472332&quot; is out of the range of a 32-bit signed integer.
 &nbsp;            Thefore INT_MIN (&minus;2<sup>31</sup>) is returned.</pre>
+

@@ -1,4 +1,5 @@
 # [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/)
+<img src="https://img.shields.io/badge/difficulty-medium-orange.svg" alt="Medium" />
 
 <p>Given a binary tree, determine if it is a valid binary search tree (BST).</p>
 
@@ -32,3 +33,4 @@
 <strong>Explanation:</strong> The input is: [5,1,4,null,null,3,6]. The root node&#39;s value
 &nbsp;            is 5 but its right child&#39;s value is 4.
 </pre>
+

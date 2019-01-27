@@ -1,4 +1,5 @@
 # [Group Anagrams](https://leetcode.com/problems/group-anagrams/)
+<img src="https://img.shields.io/badge/difficulty-medium-orange.svg" alt="Medium" />
 
 <p>Given an array of strings, group anagrams together.</p>
 
@@ -19,3 +20,4 @@
 	<li>All inputs will be in lowercase.</li>
 	<li>The order of your output does not&nbsp;matter.</li>
 </ul>
+

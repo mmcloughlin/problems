@@ -1,4 +1,5 @@
 # [Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)
+<img src="https://img.shields.io/badge/difficulty-medium-orange.svg" alt="Medium" />
 
 <p>You are given two <b>non-empty</b> linked lists representing two non-negative integers. The digits are stored in <b>reverse order</b> and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
 
@@ -11,3 +12,4 @@
 <b>Output:</b> 7 -&gt; 0 -&gt; 8
 <b>Explanation:</b> 342 + 465 = 807.
 </pre>
+

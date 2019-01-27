@@ -1,4 +1,5 @@
 # [Set Matrix Zeroes](https://leetcode.com/problems/set-matrix-zeroes/)
+<img src="https://img.shields.io/badge/difficulty-medium-orange.svg" alt="Medium" />
 
 <p>Given a <em>m</em> x <em>n</em> matrix, if an element is 0, set its entire row and column to 0. Do it <a href="https://en.wikipedia.org/wiki/In-place_algorithm" target="_blank"><strong>in-place</strong></a>.</p>
 
@@ -43,3 +44,4 @@
 	<li>A simple improvement uses O(<em>m</em> + <em>n</em>) space, but still not the best solution.</li>
 	<li>Could you devise a constant space solution?</li>
 </ul>
+

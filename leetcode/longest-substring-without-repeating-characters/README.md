@@ -1,4 +1,5 @@
 # [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
+<img src="https://img.shields.io/badge/difficulty-medium-orange.svg" alt="Medium" />
 
 <p>Given a string, find the length of the <b>longest substring</b> without repeating characters.</p>
 
@@ -32,3 +33,4 @@
 </div>
 </div>
 </div>
+

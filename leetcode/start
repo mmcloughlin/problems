@@ -5,7 +5,6 @@ import sys
 
 import requests
 
-
 def question_data(title_slug):
     """
     Fetch question data from leetcode GraphQL API.
@@ -22,12 +21,39 @@ def question_data(title_slug):
                     title
                     titleSlug
                     content
+                    difficulty
+                    likes
+                    dislikes
+                    codeSnippets { lang langSlug code }
                 }
             }""",
         }
     r = requests.post(url, json=payload)
     r.raise_for_status()
     return r.json()
+
+
+def difficulty_badge(difficulty):
+    subject = 'difficulty'
+    status = difficulty.lower()
+    color = {
+            'easy': 'green',
+            'medium': 'orange',
+            'hard': 'red',
+            }[status]
+    return f'https://img.shields.io/badge/{subject}-{status}-{color}.svg'
+
+
+def readme_content(question):
+    params = dict(question)
+    params['difficulty_badge'] = difficulty_badge(question['difficulty'])
+
+    template  = '# [{title}](https://leetcode.com/problems/{titleSlug}/)\n'
+    template += '<img src="{difficulty_badge}" alt="{difficulty}" />\n'
+    template += '\n'
+    template += '{content}\n'
+
+    return template.format(**params)
 
 
 def init_question(title_slug):
@@ -45,7 +71,7 @@ def init_question(title_slug):
 
     # Write README.
     readme_path = os.path.join(path, 'README.md')
-    content = '# [{title}](https://leetcode.com/problems/{titleSlug}/)\n\n{content}'.format(**question)
+    content = readme_content(question)
     with open(readme_path, 'w') as f:
         f.write(content)
 

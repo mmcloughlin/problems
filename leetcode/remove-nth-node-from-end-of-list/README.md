@@ -1,4 +1,5 @@
 # [Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
+<img src="https://img.shields.io/badge/difficulty-medium-orange.svg" alt="Medium" />
 
 <p>Given a linked list, remove the <em>n</em>-th node from the end of list and return its head.</p>
 
@@ -17,3 +18,4 @@ After removing the second node from the end, the linked list becomes <strong>1-&
 <p><strong>Follow up:</strong></p>
 
 <p>Could you do this in one pass?</p>
+

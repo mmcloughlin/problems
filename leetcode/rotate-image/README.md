@@ -1,4 +1,5 @@
 # [Rotate Image](https://leetcode.com/problems/rotate-image/)
+<img src="https://img.shields.io/badge/difficulty-medium-orange.svg" alt="Medium" />
 
 <p>You are given an <em>n</em> x <em>n</em> 2D matrix representing an image.</p>
 
@@ -45,3 +46,4 @@ rotate the input matrix <strong>in-place</strong> such that it becomes:
   [16, 7,10,11]
 ]
 </pre>
+

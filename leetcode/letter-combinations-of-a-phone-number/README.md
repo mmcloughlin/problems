@@ -1,4 +1,5 @@
 # [Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)
+<img src="https://img.shields.io/badge/difficulty-medium-orange.svg" alt="Medium" />
 
 <p>Given a string containing digits from <code>2-9</code> inclusive, return all possible letter combinations that the number could represent.</p>
 
@@ -16,3 +17,4 @@
 <p><strong>Note:</strong></p>
 
 <p>Although the above answer is in lexicographical order, your answer could be in any order you want.</p>
+
