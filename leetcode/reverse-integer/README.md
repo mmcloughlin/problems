@@ -1,5 +1,5 @@
 # [Reverse Integer](https://leetcode.com/problems/reverse-integer/)
-<img src="https://img.shields.io/badge/difficulty-easy-green.svg" alt="Easy" />
+<img src="https://img.shields.io/badge/difficulty-easy-green.svg??style=flat-square" alt="Easy" />
 
 <p>Given a 32-bit signed integer, reverse digits of an integer.</p>
 

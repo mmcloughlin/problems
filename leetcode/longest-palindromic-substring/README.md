@@ -1,5 +1,5 @@
 # [Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/)
-<img src="https://img.shields.io/badge/difficulty-medium-orange.svg" alt="Medium" />
+<img src="https://img.shields.io/badge/difficulty-medium-orange.svg??style=flat-square" alt="Medium" />
 
 <p>Given a string <strong>s</strong>, find the longest palindromic substring in <strong>s</strong>. You may assume that the maximum length of <strong>s</strong> is 1000.</p>
 

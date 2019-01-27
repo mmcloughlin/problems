@@ -1,5 +1,5 @@
 # [Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
-<img src="https://img.shields.io/badge/difficulty-medium-orange.svg" alt="Medium" />
+<img src="https://img.shields.io/badge/difficulty-medium-orange.svg??style=flat-square" alt="Medium" />
 
 <p>Given a linked list, remove the <em>n</em>-th node from the end of list and return its head.</p>
 

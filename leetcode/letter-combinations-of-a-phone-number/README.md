@@ -1,5 +1,5 @@
 # [Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)
-<img src="https://img.shields.io/badge/difficulty-medium-orange.svg" alt="Medium" />
+<img src="https://img.shields.io/badge/difficulty-medium-orange.svg??style=flat-square" alt="Medium" />
 
 <p>Given a string containing digits from <code>2-9</code> inclusive, return all possible letter combinations that the number could represent.</p>
 

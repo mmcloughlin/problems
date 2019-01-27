@@ -1,5 +1,5 @@
 # [Two Sum](https://leetcode.com/problems/two-sum/)
-<img src="https://img.shields.io/badge/difficulty-easy-green.svg" alt="Easy" />
+<img src="https://img.shields.io/badge/difficulty-easy-green.svg??style=flat-square" alt="Easy" />
 
 <p>Given an array of integers, return <strong>indices</strong> of the two numbers such that they add up to a specific target.</p>
 

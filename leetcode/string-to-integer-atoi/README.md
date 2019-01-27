@@ -1,5 +1,5 @@
 # [String to Integer (atoi)](https://leetcode.com/problems/string-to-integer-atoi/)
-<img src="https://img.shields.io/badge/difficulty-medium-orange.svg" alt="Medium" />
+<img src="https://img.shields.io/badge/difficulty-medium-orange.svg??style=flat-square" alt="Medium" />
 
 <p>Implement <code><span>atoi</span></code> which&nbsp;converts a string to an integer.</p>
 

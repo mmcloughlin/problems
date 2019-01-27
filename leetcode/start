@@ -41,7 +41,7 @@ def difficulty_badge(difficulty):
             'medium': 'orange',
             'hard': 'red',
             }[status]
-    return f'https://img.shields.io/badge/{subject}-{status}-{color}.svg'
+    return f'https://img.shields.io/badge/{subject}-{status}-{color}.svg??style=flat-square'
 
 
 def readme_content(question):

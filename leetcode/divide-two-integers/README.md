@@ -1,5 +1,5 @@
 # [Divide Two Integers](https://leetcode.com/problems/divide-two-integers/)
-<img src="https://img.shields.io/badge/difficulty-medium-orange.svg" alt="Medium" />
+<img src="https://img.shields.io/badge/difficulty-medium-orange.svg??style=flat-square" alt="Medium" />
 
 <p>Given two integers <code>dividend</code> and <code>divisor</code>, divide two integers without using multiplication, division and mod operator.</p>
 
