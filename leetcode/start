@@ -45,7 +45,7 @@ def init_question(title_slug):
 
     # Write README.
     readme_path = os.path.join(path, 'README.md')
-    content = '# {title}\n\n{content}'.format(**question)
+    content = '# [{title}](https://leetcode.com/problems/{titleSlug}/)\n\n{content}'.format(**question)
     with open(readme_path, 'w') as f:
         f.write(content)
 
