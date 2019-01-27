@@ -1,11 +1,14 @@
-Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
+# 3Sum
 
-Note:
+<p>Given an array <code>nums</code> of <em>n</em> integers, are there elements <em>a</em>, <em>b</em>, <em>c</em> in <code>nums</code> such that <em>a</em> + <em>b</em> + <em>c</em> = 0? Find all unique triplets in the array which gives the sum of zero.</p>
 
-The solution set must not contain duplicate triplets.
+<p><strong>Note:</strong></p>
 
-Example:
-```
+<p>The solution set must not contain duplicate triplets.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre>
 Given array nums = [-1, 0, 1, 2, -1, -4],
 
 A solution set is:
@@ -13,4 +16,4 @@ A solution set is:
   [-1, 0, 1],
   [-1, -1, 2]
 ]
-```
+</pre>

@@ -1,17 +1,21 @@
-Given an array of strings, group anagrams together.
+# Group Anagrams
 
-Example:
-```
-Input: ["eat", "tea", "tan", "ate", "nat", "bat"],
-Output:
+<p>Given an array of strings, group anagrams together.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre>
+<strong>Input:</strong> <code>[&quot;eat&quot;, &quot;tea&quot;, &quot;tan&quot;, &quot;ate&quot;, &quot;nat&quot;, &quot;bat&quot;]</code>,
+<strong>Output:</strong>
 [
-  ["ate","eat","tea"],
-  ["nat","tan"],
-  ["bat"]
-]
-```
-Note:
+  [&quot;ate&quot;,&quot;eat&quot;,&quot;tea&quot;],
+  [&quot;nat&quot;,&quot;tan&quot;],
+  [&quot;bat&quot;]
+]</pre>
 
-All inputs will be in lowercase.
-The order of your output does not matter.
+<p><strong>Note:</strong></p>
 
+<ul>
+	<li>All inputs will be in lowercase.</li>
+	<li>The order of your output does not&nbsp;matter.</li>
+</ul>

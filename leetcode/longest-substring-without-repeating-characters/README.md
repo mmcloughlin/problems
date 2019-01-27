@@ -1,26 +1,34 @@
-Given a string, find the length of the longest substring without repeating characters.
+# Longest Substring Without Repeating Characters
 
-Example 1:
+<p>Given a string, find the length of the <b>longest substring</b> without repeating characters.</p>
 
-```
-Input: "abcabcbb"
-Output: 3 
-Explanation: The answer is "abc", with the length of 3. 
-```
+<div>
+<p><strong>Example 1:</strong></p>
 
-Example 2:
+<pre>
+<strong>Input: </strong><span id="example-input-1-1">&quot;abcabcbb&quot;</span>
+<strong>Output: </strong><span id="example-output-1">3 
+<strong>Explanation:</strong></span> The answer is <code>&quot;abc&quot;</code>, with the length of 3. 
+</pre>
 
-```
-Input: "bbbbb"
-Output: 1
-Explanation: The answer is "b", with the length of 1.
-```
+<div>
+<p><strong>Example 2:</strong></p>
 
-Example 3:
+<pre>
+<strong>Input: </strong><span id="example-input-2-1">&quot;bbbbb&quot;</span>
+<strong>Output: </strong><span id="example-output-2">1
+</span><span id="example-output-1"><strong>Explanation: </strong>T</span>he answer is <code>&quot;b&quot;</code>, with the length of 1.
+</pre>
 
-```
-Input: "pwwkew"
-Output: 3
-Explanation: The answer is "wke", with the length of 3. 
-             Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
-```
+<div>
+<p><strong>Example 3:</strong></p>
+
+<pre>
+<strong>Input: </strong><span id="example-input-3-1">&quot;pwwkew&quot;</span>
+<strong>Output: </strong><span id="example-output-3">3
+</span><span id="example-output-1"><strong>Explanation: </strong></span>The answer is <code>&quot;wke&quot;</code>, with the length of 3. 
+             Note that the answer must be a <b>substring</b>, <code>&quot;pwke&quot;</code> is a <i>subsequence</i> and not a substring.
+</pre>
+</div>
+</div>
+</div>

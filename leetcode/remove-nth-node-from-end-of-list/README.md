@@ -1,17 +1,19 @@
-Given a linked list, remove the n-th node from the end of list and return its head.
+# Remove Nth Node From End of List
 
-Example:
+<p>Given a linked list, remove the <em>n</em>-th node from the end of list and return its head.</p>
 
-```
-Given linked list: 1->2->3->4->5, and n = 2.
+<p><strong>Example:</strong></p>
 
-After removing the second node from the end, the linked list becomes 1->2->3->5.
-```
+<pre>
+Given linked list: <strong>1-&gt;2-&gt;3-&gt;4-&gt;5</strong>, and <strong><em>n</em> = 2</strong>.
 
-Note:
+After removing the second node from the end, the linked list becomes <strong>1-&gt;2-&gt;3-&gt;5</strong>.
+</pre>
 
-Given n will always be valid.
+<p><strong>Note:</strong></p>
 
-Follow up:
+<p>Given <em>n</em> will always be valid.</p>
 
-Could you do this in one pass?
+<p><strong>Follow up:</strong></p>
+
+<p>Could you do this in one pass?</p>
