@@ -7,6 +7,35 @@ type TreeNode struct {
 }
 
 func inorderTraversal(root *TreeNode) []int {
+	type state struct {
+		node        *TreeNode
+		visitedleft bool
+	}
+	values := []int{}
+	stack := []state{{root, false}}
+	for len(stack) > 0 {
+		// Pop the stack.
+		top := len(stack) - 1
+		s := stack[top]
+		stack = stack[:top]
+
+		if s.visitedleft {
+			values = append(values, s.node.Val)
+			stack = append(stack, state{s.node.Right, false})
+			continue
+		}
+
+		if s.node == nil {
+			continue
+		}
+
+		stack = append(stack, state{s.node, true}, state{s.node.Left, false})
+	}
+	return values
+}
+
+/*
+func inorderTraversal(root *TreeNode) []int {
 	if root == nil {
 		return []int{}
 	}
@@ -16,3 +45,4 @@ func inorderTraversal(root *TreeNode) []int {
 	values = append(values, inorderTraversal(root.Right)...)
 	return values
 }
+*/
