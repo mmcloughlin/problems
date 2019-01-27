@@ -1,5 +1,5 @@
 # [Group Anagrams](https://leetcode.com/problems/group-anagrams/)
-<img src="https://img.shields.io/badge/difficulty-medium-orange.svg??style=flat-square" alt="Medium" />
+<img src="https://img.shields.io/badge/difficulty-medium-orange.svg?style=flat-square" alt="Medium" />
 
 <p>Given an array of strings, group anagrams together.</p>
 

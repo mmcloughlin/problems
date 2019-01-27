@@ -1,5 +1,5 @@
 # [Rotate Image](https://leetcode.com/problems/rotate-image/)
-<img src="https://img.shields.io/badge/difficulty-medium-orange.svg??style=flat-square" alt="Medium" />
+<img src="https://img.shields.io/badge/difficulty-medium-orange.svg?style=flat-square" alt="Medium" />
 
 <p>You are given an <em>n</em> x <em>n</em> 2D matrix representing an image.</p>
 

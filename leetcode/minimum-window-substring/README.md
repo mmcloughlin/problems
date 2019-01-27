@@ -1,5 +1,5 @@
 # [Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)
-<img src="https://img.shields.io/badge/difficulty-hard-red.svg??style=flat-square" alt="Hard" />
+<img src="https://img.shields.io/badge/difficulty-hard-red.svg?style=flat-square" alt="Hard" />
 
 <p>Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).</p>
 

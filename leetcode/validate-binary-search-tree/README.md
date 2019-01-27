@@ -1,5 +1,5 @@
 # [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/)
-<img src="https://img.shields.io/badge/difficulty-medium-orange.svg??style=flat-square" alt="Medium" />
+<img src="https://img.shields.io/badge/difficulty-medium-orange.svg?style=flat-square" alt="Medium" />
 
 <p>Given a binary tree, determine if it is a valid binary search tree (BST).</p>
 
