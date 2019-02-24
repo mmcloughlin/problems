@@ -53,6 +53,7 @@ def question_data(title_slug):
                     likes
                     dislikes
                     codeSnippets { lang langSlug code }
+                    metaData
                 }
             }""",
     }
@@ -91,6 +92,13 @@ def readme_content(question):
     return template.format(**params)
 
 
+def lang_snippet(question, lang_slug):
+    for snippet in question['codeSnippets']:
+        if snippet['langSlug'] == lang_slug:
+            return snippet
+    return None
+
+
 def init_question(title_slug):
     """
     Create question directory with a README.
@@ -110,6 +118,15 @@ def init_question(title_slug):
     content = readme_content(question)
     with open(readme_path, 'w') as f:
         f.write(content)
+
+    # Write Go snippet.
+    snippet = lang_snippet(question, 'golang')
+    if snippet is None:
+        return
+    solution_path = os.path.join(path, 'solution.go')
+    with open(solution_path, 'w') as f:
+        f.write("package solution\n\n")
+        f.write(snippet['code'] + "\n")
 
 
 def has_difficulty(difficulty):
