@@ -95,6 +95,7 @@ def init_question(title_slug):
     """
     Create question directory with a README.
     """
+    LOG.info("initializing question '%s'", title_slug)
     path = title_slug
 
     # Ensure the question directory exists.
@@ -154,9 +155,12 @@ def command_pick(args):
         LOG.error('not enough questions')
         return
 
+    # Choose from them.
     chosen = random.sample(questions, args.num)
     for question in chosen:
-        LOG.info("picked: '%s'", question['titleSlug'])
+        title_slug = question['titleSlug']
+        LOG.info("picked: '%s'", title_slug)
+        init_question(title_slug)
 
 
 def command_list(args):
