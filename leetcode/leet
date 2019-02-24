@@ -1,0 +1,203 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+import argparse
+import glob
+import random
+import logging
+
+import requests
+
+
+LOG = logging.getLogger('leet')
+
+
+def problem_list(name):
+    """
+    Download all problems in a list.
+    """
+    url = 'https://leetcode.com/api/problems/favorite_lists/' + name
+    r = requests.get(url)
+    r.raise_for_status()
+    data = r.json()
+    difficulty_levels = ['easy', 'medium', 'hard']
+    questions = []
+    for stat_status_pair in data['stat_status_pairs']:
+        question = {
+            'title': stat_status_pair['stat']['question__title'],
+            'titleSlug': stat_status_pair['stat']['question__title_slug'],
+            'difficulty': difficulty_levels[stat_status_pair['difficulty']['level']-1]
+        }
+        questions.append(question)
+    return questions
+
+
+def question_data(title_slug):
+    """
+    Fetch question data from leetcode GraphQL API.
+    """
+    url = 'https://leetcode.com/graphql'
+    payload = {
+        "operationName": "questionData",
+        "variables": {
+            "titleSlug": title_slug,
+        },
+        "query": """query questionData($titleSlug: String!) {
+                question(titleSlug: $titleSlug) {
+                    questionId
+                    title
+                    titleSlug
+                    content
+                    difficulty
+                    likes
+                    dislikes
+                    codeSnippets { lang langSlug code }
+                }
+            }""",
+    }
+    r = requests.post(url, json=payload)
+    r.raise_for_status()
+    return r.json()
+
+
+def downloaded_title_slugs():
+    """
+    Get the title slugs of all problems in the current directory.
+    """
+    return list(map(os.path.dirname, glob.glob("*/README.md")))
+
+
+def difficulty_badge(difficulty):
+    subject = 'difficulty'
+    status = difficulty.lower()
+    color = {
+        'easy': 'green',
+        'medium': 'orange',
+        'hard': 'red',
+    }[status]
+    return f'https://img.shields.io/badge/{subject}-{status}-{color}.svg?style=flat-square'
+
+
+def readme_content(question):
+    params = dict(question)
+    params['difficulty_badge'] = difficulty_badge(question['difficulty'])
+
+    template = '# [{title}](https://leetcode.com/problems/{titleSlug}/)\n'
+    template += '<img src="{difficulty_badge}" alt="{difficulty}" />\n'
+    template += '\n'
+    template += '{content}\n'
+
+    return template.format(**params)
+
+
+def init_question(title_slug):
+    """
+    Create question directory with a README.
+    """
+    path = title_slug
+
+    # Ensure the question directory exists.
+    os.makedirs(path, exist_ok=True)
+
+    # Fetch question data.
+    response = question_data(title_slug)
+    question = response['data']['question']
+
+    # Write README.
+    readme_path = os.path.join(path, 'README.md')
+    content = readme_content(question)
+    with open(readme_path, 'w') as f:
+        f.write(content)
+
+
+def has_difficulty(difficulty):
+    return lambda q: q['difficulty'] == difficulty
+
+
+def difficulty_at_most(difficulty):
+    difficulty_level = {'easy': 1, 'medium': 2, 'hard': 3}
+    return lambda q: difficulty_level[q['difficulty']] <= difficulty_level[difficulty]
+
+
+def slug_not_in(slugs):
+    return lambda q: q['titleSlug'] not in slugs
+
+
+def all_predicates(*predicates):
+    return lambda q: all(p(q) for p in predicates)
+
+
+def command_download(args):
+    for title_slug in args.slug:
+        init_question(title_slug)
+
+
+def command_pick(args):
+    # Build matching rules.
+    predicates = [slug_not_in(downloaded_title_slugs())]
+    if args.difficulty:
+        LOG.info('filter: difficulty %s', args.difficulty)
+        predicates.append(has_difficulty(args.difficulty))
+    if args.max_difficulty:
+        LOG.info('filter: max difficulty %s', args.max_difficulty)
+        predicates.append(difficulty_at_most(args.max_difficulty))
+    predicate = all_predicates(*predicates)
+
+    # Fetch and filter the problems list.
+    LOG.info("choosing from list '%s'", args.list)
+    questions = problem_list(args.list)
+    questions = [q for q in questions if predicate(q)]
+
+    LOG.info("%d questions available", len(questions))
+    if len(questions) < args.num:
+        LOG.error('not enough questions')
+        return
+
+    chosen = random.sample(questions, args.num)
+    for question in chosen:
+        LOG.info("picked: '%s'", question['titleSlug'])
+
+
+def command_list(args):
+    questions = problem_list(args.name)
+    for question in questions:
+        print("{titleSlug}".format(**question))
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Leetcode CLI')
+    subparsers = parser.add_subparsers()
+
+    # Define download subcommand.
+    parser_download = subparsers.add_parser(
+        "download", aliases=["dl", "start"], help="download problem(s)")
+    parser_download.add_argument(
+        'slug', nargs='+', help='title slugs to download')
+    parser_download.set_defaults(action=command_download)
+
+    # Define pick subcommand.
+    parser_pick = subparsers.add_parser("pick", help="pick a problem")
+    parser_pick.add_argument(
+        '--list', default="top-interview-questions", help='list to choose from')
+    parser_pick.add_argument('--difficulty', help='difficulty')
+    parser_pick.add_argument('--max-difficulty', help='maximum difficulty')
+    parser_pick.add_argument(
+        '--num', type=int, default=1, help='number to choose')
+    parser_pick.set_defaults(action=command_pick)
+
+    # Define list subcommand.
+    parser_list = subparsers.add_parser(
+        "list", aliases=["ls"], help="show problem list")
+    parser_list.add_argument(
+        '--name', default="top-interview-questions", help='list name')
+    parser_list.set_defaults(action=command_list)
+
+    # Execute.
+    logging.basicConfig(level=logging.INFO)
+    args = parser.parse_args()
+    args.action(args)
+
+
+if __name__ == '__main__':
+    main()
