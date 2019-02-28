@@ -27,7 +27,8 @@ def problem_list(name):
         question = {
             'title': stat_status_pair['stat']['question__title'],
             'titleSlug': stat_status_pair['stat']['question__title_slug'],
-            'difficulty': difficulty_levels[stat_status_pair['difficulty']['level']-1]
+            'difficulty': difficulty_levels[stat_status_pair['difficulty']['level']-1],
+            'paid_only': stat_status_pair['paid_only'],
         }
         questions.append(question)
     return questions
@@ -138,6 +139,10 @@ def difficulty_at_most(difficulty):
     return lambda q: difficulty_level[q['difficulty']] <= difficulty_level[difficulty]
 
 
+def not_paid_only(q):
+    return not q['paid_only']
+
+
 def slug_not_in(slugs):
     return lambda q: q['titleSlug'] not in slugs
 
@@ -153,7 +158,10 @@ def command_download(args):
 
 def command_pick(args):
     # Build matching rules.
-    predicates = [slug_not_in(downloaded_title_slugs())]
+    predicates = [
+        slug_not_in(downloaded_title_slugs()),
+        not_paid_only,
+    ]
     if args.difficulty:
         LOG.info('filter: difficulty %s', args.difficulty)
         predicates.append(has_difficulty(args.difficulty))
