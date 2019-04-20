@@ -134,9 +134,16 @@ def has_difficulty(difficulty):
     return lambda q: q['difficulty'] == difficulty
 
 
+def difficulty_level(difficulty):
+    return {'easy': 1, 'medium': 2, 'hard': 3}[difficulty]
+
+
 def difficulty_at_most(difficulty):
-    difficulty_level = {'easy': 1, 'medium': 2, 'hard': 3}
-    return lambda q: difficulty_level[q['difficulty']] <= difficulty_level[difficulty]
+    return lambda q: difficulty_level(q['difficulty']) <= difficulty_level(difficulty)
+
+
+def difficulty_at_least(difficulty):
+    return lambda q: difficulty_level(q['difficulty']) >= difficulty_level(difficulty)
 
 
 def not_paid_only(q):
@@ -165,6 +172,9 @@ def command_pick(args):
     if args.difficulty:
         LOG.info('filter: difficulty %s', args.difficulty)
         predicates.append(has_difficulty(args.difficulty))
+    if args.min_difficulty:
+        LOG.info('filter: min difficulty %s', args.min_difficulty)
+        predicates.append(difficulty_at_least(args.min_difficulty))
     if args.max_difficulty:
         LOG.info('filter: max difficulty %s', args.max_difficulty)
         predicates.append(difficulty_at_most(args.max_difficulty))
@@ -194,6 +204,9 @@ def command_list(args):
         print("{titleSlug}".format(**question))
 
 
+DEFAULT_LIST = "top-100-liked-questions"  # "top-interview-questions"
+
+
 def main():
     parser = argparse.ArgumentParser(description='Leetcode CLI')
     subparsers = parser.add_subparsers()
@@ -208,9 +221,10 @@ def main():
     # Define pick subcommand.
     parser_pick = subparsers.add_parser("pick", help="pick a problem")
     parser_pick.add_argument(
-        '--list', default="top-interview-questions", help='list to choose from')
+        '--list', default=DEFAULT_LIST, help='list to choose from')
     parser_pick.add_argument('--difficulty', help='difficulty')
     parser_pick.add_argument('--max-difficulty', help='maximum difficulty')
+    parser_pick.add_argument('--min-difficulty', help='minimum difficulty')
     parser_pick.add_argument(
         '--num', type=int, default=1, help='number to choose')
     parser_pick.set_defaults(action=command_pick)
@@ -218,8 +232,7 @@ def main():
     # Define list subcommand.
     parser_list = subparsers.add_parser(
         "list", aliases=["ls"], help="show problem list")
-    parser_list.add_argument(
-        '--name', default="top-interview-questions", help='list name')
+    parser_list.add_argument('--name', default=DEFAULT_LIST, help='list name')
     parser_list.set_defaults(action=command_list)
 
     # Execute.
