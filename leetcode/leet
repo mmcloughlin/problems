@@ -17,7 +17,7 @@ def problem_list(name):
     """
     Download all problems in a list.
     """
-    url = 'https://leetcode.com/api/problems/favorite_lists/' + name
+    url = 'https://leetcode.com/api/problems/' + name
     r = requests.get(url)
     r.raise_for_status()
     data = r.json()
@@ -204,7 +204,8 @@ def command_list(args):
         print("{titleSlug}".format(**question))
 
 
-DEFAULT_LIST = "top-100-liked-questions"  # "top-interview-questions"
+# "favorite_lists/top-interview-questions"
+DEFAULT_LIST = "favorite_lists/top-100-liked-questions"
 
 
 def main():
