@@ -29,6 +29,8 @@ def problem_list(name):
             'titleSlug': stat_status_pair['stat']['question__title_slug'],
             'difficulty': difficulty_levels[stat_status_pair['difficulty']['level']-1],
             'paid_only': stat_status_pair['paid_only'],
+            'submitted': stat_status_pair['stat']['total_submitted'],
+            'accepted': stat_status_pair['stat']['total_acs'],
         }
         questions.append(question)
     return questions
@@ -146,6 +148,14 @@ def difficulty_at_least(difficulty):
     return lambda q: difficulty_level(q['difficulty']) >= difficulty_level(difficulty)
 
 
+def acceptance_ratio_at_least(ratio):
+    return lambda q: float(q['accepted']) >= float(q['submitted']) * ratio
+
+
+def submitted_at_least(min_submitted):
+    return lambda q: int(q['submitted']) >= min_submitted
+
+
 def not_paid_only(q):
     return not q['paid_only']
 
@@ -178,6 +188,12 @@ def command_pick(args):
     if args.max_difficulty:
         LOG.info('filter: max difficulty %s', args.max_difficulty)
         predicates.append(difficulty_at_most(args.max_difficulty))
+    if args.min_acceptance_ratio:
+        LOG.info('filter: min acceptance ratio %f', args.min_acceptance_ratio)
+        predicates.append(acceptance_ratio_at_least(args.min_acceptance_ratio))
+    if args.min_submitted:
+        LOG.info('filter: min submitted %d', args.min_submitted)
+        predicates.append(submitted_at_least(args.min_submitted))
     predicate = all_predicates(*predicates)
 
     # Fetch and filter the problems list.
@@ -195,7 +211,8 @@ def command_pick(args):
     for question in chosen:
         title_slug = question['titleSlug']
         LOG.info("picked: '%s'", title_slug)
-        init_question(title_slug)
+        if not args.dry:
+            init_question(title_slug)
 
 
 def command_list(args):
@@ -226,8 +243,13 @@ def main():
     parser_pick.add_argument('--difficulty', help='difficulty')
     parser_pick.add_argument('--max-difficulty', help='maximum difficulty')
     parser_pick.add_argument('--min-difficulty', help='minimum difficulty')
+    parser_pick.add_argument('--min-acceptance-ratio',
+                             type=float, help='min acceptance ratio')
+    parser_pick.add_argument('--min-submitted', default=100000,
+                             type=int, help='min submitted')
     parser_pick.add_argument(
         '--num', type=int, default=1, help='number to choose')
+    parser_pick.add_argument('--dry', action='store_true', help='dry run')
     parser_pick.set_defaults(action=command_pick)
 
     # Define list subcommand.
